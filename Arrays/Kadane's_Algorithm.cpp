@@ -18,4 +18,21 @@ public:
         return *max_element(dp,dp+n);
     }
 
+    int maxSumSubArray(vector<int>& arr) {
+
+        int maxEndingAtPrevIndex = arr[0];
+        int maxSumSubArraySoFar = arr[0];
+        
+        for(int i = 1; i < arr.size(); i++) {
+
+            int maxEndingAtCurrIndex = max(arr[i], maxEndingAtPrevIndex + arr[i]);
+        
+            maxSumSubArraySoFar = max(maxSumSubArraySoFar, maxEndingAtCurrIndex);
+        
+            maxEndingAtPrevIndex = maxEndingAtCurrIndex;
+        
+        }
+        
+        return maxSumSubArraySoFar;
+    }
 };
